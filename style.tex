@@ -1,0 +1,143 @@
+\usepackage{appendixnumberbeamer}
+
+\usetheme{Madrid}
+\definecolor{color@background}{HTML}{EFEFEF}
+\definecolor{color@text}{HTML}{222222}
+\definecolor{color@main}{HTML}{005C92}
+\definecolor{color@emph}{RGB}{222,104,49}
+\definecolor{color@header}{HTML}{002366}
+
+\makeatletter
+%% Color parette
+% base
+\setbeamercolor{background canvas}{bg=color@background}
+\setbeamercolor{normal text}{fg=color@text}
+\setbeamercolor{alerted text}{fg=color@emph}
+\setbeamercolor{structure}{fg=color@main}
+% parette
+\setbeamercolor{parette primary}{fg=color@text, bg=color@background}
+\setbeamercolor{parette secondary}{fg=color@text, bg=color@background}
+\setbeamercolor{parette tertiary}{fg=color@text, bg=color@background}
+\setbeamercolor{parette quaternary}{fg=color@text, bg=color@background}
+
+%% Componentx
+% base
+\setbeamersize{text margin left=8mm,text margin right=8mm}
+% header
+\setbeamercolor{header}{fg=color@background, bg=color@main}
+\setbeamercolor{page number}{parent=header, bg=color@main}
+\setbeamertemplate{headline}{%
+  \mbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.25ex]{header}%
+      \begin{minipage}{0.88\paperwidth}
+        \hspace{4mm}
+        \ifx\insertshortsubtitle\@empty
+        \else
+          \insertshortsubtitle:~%
+        \fi
+        \ifx\insertshorttitle\@empty
+          \inserttitle%
+        \else
+          \insertshorttitle%
+        \fi
+        \ifx\insertsectionhead\@empty%
+        \else%
+          \space\(\rhd\) \insertsectionhead%
+        \fi
+      \end{minipage}%
+      \begin{minipage}{0.12\paperwidth}
+        \begin{center}
+          \textbf{\insertframenumber{} / \inserttotalframenumber{}}
+        \end{center}
+      \end{minipage}
+    \end{beamercolorbox}%
+  }
+}
+% footer
+\setbeamertemplate{navigation symbols}{} % no navigation
+\setbeamertemplate{footline}{} % no footer
+% title page
+\setbeamerfont*{title}{series=\bfseries,size={\fontsize{16}{14}}}
+\setbeamerfont*{subtitle}{size={\fontsize{12}{10}}}
+\setbeamerfont*{author}{size={\fontsize{10}{8}}}
+\setbeamerfont*{institute}{size={\fontsize{8}{8}}}
+\setbeamercolor{titlelike}{fg=color@background, bg=structure.fg}
+\setbeamercolor{subtitle}{parent=normal}
+\setbeamertemplate{title page}
+{%
+  \leavevmode%
+  \vbox{}
+  \vspace{2em}\par%
+  \begin{center}
+    \ifx\insertsubtitle\@empty%
+      \begin{beamercolorbox}[sep=14pt,center,rounded=true]{title}
+        \usebeamerfont{title}\inserttitle\par%
+      \end{beamercolorbox}%
+    \else%
+      \begin{beamercolorbox}[sep=8pt,center,rounded=true]{title}
+          {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+          \vspace{0.75em}
+        \usebeamerfont{title}\inserttitle\par%
+      \end{beamercolorbox}%
+    \fi%
+    \vspace{2.5em}\par
+    \begin{beamercolorbox}[sep=8pt,center]{author}
+      \usebeamerfont{author}\insertauthor%
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center]{institute}
+      \usebeamerfont{institute}\insertinstitute%
+    \end{beamercolorbox}
+  \end{center}
+}
+% frame
+\setbeamercolor{frametitle}{parent=titlelike}
+\setbeamertemplate{frametitle}
+{%
+    \nointerlineskip%
+    \begin{beamercolorbox}[sep=0.3cm,dp=0.25ex,ht=1.6em,wd=\paperwidth]{frametitle}
+        \vbox{}\vspace{-2ex}%
+        \hspace{3mm}\strut\insertframetitle\strut%
+        \vspace{0.8ex}
+    \end{beamercolorbox}
+}
+% inline
+\setbeamerfont*{alerted text}{series=\bfseries}
+
+%% Font setting for Japanese
+\renewcommand\kanjifamilydefault{\gtdefault}
+% \renewcommand\familydefault{\sfdefault}
+\usefonttheme[onlymath]{serif}
+
+%% Commands
+\newcommand{\skipnumbering}{\addtocounter{framenumber}{-1}}
+\renewcommand\maketitle{%
+  {%
+    \setbeamertemplate{headline}{%
+      \mbox{%
+        \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex]{background canvas}
+        \end{beamercolorbox}
+      }
+    }
+    \setbeamertemplate{footline}{}
+    \begin{frame}
+      \titlepage%
+    \end{frame}
+    \skipnumbering%
+  }%
+}
+\newcommand{\beginappendix}{%
+  {%
+    \setbeamercolor{background canvas}{bg=black}
+    \setbeamertemplate{headline}{%
+      \mbox{%
+        \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.25ex]{background canvas}
+        \end{beamercolorbox}
+      }
+    }
+    \begin{frame}<handout:0>
+    \end{frame}
+  }
+  \skipnumbering%
+  \appendix%
+}
+\makeatother

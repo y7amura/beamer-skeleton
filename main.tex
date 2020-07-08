@@ -1,0 +1,43 @@
+\ifdefined\HANDOUT%
+\else%
+\documentclass[12pt,dvipdfmx]{beamer}
+% \documentclass[18pt,dvipdfmx,aspectratio=169]{beamer} % for 16:9 slide
+\fi%
+
+\usepackage{amsmath, amssymb}
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{theorem}
+\usepackage{graphicx}
+\usepackage{verbatim}
+
+%% Slide theme
+\include{style}
+
+%% Index page
+\title[Title (short)]{Title}
+\subtitle[Subtitle (short)]{Subtitle}
+\author[Author (short)]{Author Name}
+\institute[Institute (short)]{%
+    Your institute here\\
+    \texttt{email.address}
+}
+\date{dd~MMM.~yyy} % currently not visible on the slide
+
+%% Configurations
+\graphicspath{{./img}}
+
+%% Insert TOC between sections
+% \AtBeginSubsection[]{
+%   \frame<beamer>{
+%     \frametitle{Outline}
+%     \tableofcontents[currentsection,currentsubsection]
+%   }
+% }
+
+\begin{document}
+\bibliographystyle{alpha}
+\maketitle
+\input{content.tex}
+\end{document}
+
