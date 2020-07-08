@@ -1,0 +1,17 @@
+# LaTeX generated files
+*.aux
+*.dvi
+*.fls
+*.log
+*.nav
+*.out
+*.pdf
+*.snm
+*.toc
+
+# created by Makefile or latexmk
+build/
+*.fdb_latexmk
+
+# OSX
+.DS_Store
