@@ -1,11 +1,14 @@
 \usepackage{appendixnumberbeamer}
 
-\usetheme{Madrid}
+\usetheme{Antibes}
+% \useoutertheme{miniframes}
+\useinnertheme{rectangles}
+
 \definecolor{color@background}{HTML}{EFEFEF}
 \definecolor{color@text}{HTML}{222222}
 \definecolor{color@main}{HTML}{005C92}
 \definecolor{color@emph}{RGB}{222,104,49}
-\definecolor{color@header}{HTML}{002366}
+\definecolor{color@sub}{RGB}{11,85,19}
 
 \makeatletter
 %% Color parette
@@ -14,13 +17,14 @@
 \setbeamercolor{normal text}{fg=color@text}
 \setbeamercolor{alerted text}{fg=color@emph}
 \setbeamercolor{structure}{fg=color@main}
+\setbeamercolor{comment}{fg=color@sub}
 % parette
 \setbeamercolor{parette primary}{fg=color@text, bg=color@background}
 \setbeamercolor{parette secondary}{fg=color@text, bg=color@background}
 \setbeamercolor{parette tertiary}{fg=color@text, bg=color@background}
 \setbeamercolor{parette quaternary}{fg=color@text, bg=color@background}
 
-%% Componentx
+%% Component
 % base
 \setbeamersize{text margin left=8mm,text margin right=8mm}
 % header
@@ -31,15 +35,7 @@
     \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.25ex]{header}%
       \begin{minipage}{0.88\paperwidth}
         \hspace{4mm}
-        \ifx\insertshortsubtitle\@empty
-        \else
-          \insertshortsubtitle:~%
-        \fi
-        \ifx\insertshorttitle\@empty
-          \inserttitle%
-        \else
-          \insertshorttitle%
-        \fi
+        \insertshorttitle%
         \ifx\insertsectionhead\@empty%
         \else%
           \space\(\rhd\) \insertsectionhead%
@@ -61,7 +57,7 @@
 \setbeamerfont*{subtitle}{size={\fontsize{12}{10}}}
 \setbeamerfont*{author}{size={\fontsize{10}{8}}}
 \setbeamerfont*{institute}{size={\fontsize{8}{8}}}
-\setbeamercolor{titlelike}{fg=color@background, bg=structure.fg}
+\setbeamercolor{titlelike}{parent=structure} % {fg=color@background, bg=structure.fg}
 \setbeamercolor{subtitle}{parent=normal}
 \setbeamertemplate{title page}
 {%
@@ -70,14 +66,14 @@
   \vspace{2em}\par%
   \begin{center}
     \ifx\insertsubtitle\@empty%
-      \begin{beamercolorbox}[sep=14pt,center,rounded=true]{title}
+      \begin{beamercolorbox}[sep=14pt,center]{title}
         \usebeamerfont{title}\inserttitle\par%
       \end{beamercolorbox}%
     \else%
-      \begin{beamercolorbox}[sep=8pt,center,rounded=true]{title}
-          {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
-          \vspace{0.75em}
-        \usebeamerfont{title}\inserttitle\par%
+      \begin{beamercolorbox}[sep=8pt,center]{title}
+        {\usebeamerfont{title}\inserttitle\par}%
+        \vspace{0.75em}
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
       \end{beamercolorbox}%
     \fi%
     \vspace{2.5em}\par
@@ -90,7 +86,7 @@
   \end{center}
 }
 % frame
-\setbeamercolor{frametitle}{parent=titlelike}
+\setbeamercolor{frametitle}{fg=color@background, bg=color@main}
 \setbeamertemplate{frametitle}
 {%
     \nointerlineskip%
@@ -100,8 +96,45 @@
         \vspace{0.8ex}
     \end{beamercolorbox}
 }
-% inline
-\setbeamerfont*{alerted text}{series=\bfseries}
+% itemize
+\setbeamertemplate{enumerate items}[default]
+% block
+\setbeamercolor{block title}{use=structure,fg=color@background,bg=color@main!100!bg}
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!20!bg}
+\setbeamercolor{block title example}{use=structure,fg=color@background,bg=color@sub!90!bg}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!20!bg}
+\setbeamercolor{block title alerted}{fg=color@background,bg=color@emph!100!bg}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!20!bg}
+% Listings
+% \DeclareCaptionFormat{listing}{\small{#1#2#3}}
+% \captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=0pt, font={sf},labelsep=space,labelfont=bf}
+\renewcommand\lstlistingname{Code}
+\lstset{
+    backgroundcolor=\color{color@background},
+    basicstyle=\footnotesize\color{color@text}\ttfamily,
+    commentstyle=\color{color@text!45}\ttfamily,
+    keywordstyle=\color{color@main!80},
+    stringstyle=\color{color@sub!70},
+    escapechar=\%,
+    xleftmargin=0em,
+    framexleftmargin=0.1ex,
+    framexrightmargin=0.2ex,
+    framexbottommargin=0.1ex,
+    framextopmargin=0.2ex,
+    columns=flexible,
+    keepspaces=true,
+    alsoletter=0123456789.,
+    showstringspaces=false,
+    upquote=true,
+    numbers=left,
+    numberstyle=\tiny\ttfamily\color{gray},
+    mathescape=true,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=single
+}
 
 %% Font setting for Japanese
 \renewcommand\kanjifamilydefault{\gtdefault}
@@ -110,15 +143,26 @@
 
 %% Commands
 \newcommand{\skipnumbering}{\addtocounter{framenumber}{-1}}
+\newcommand{\sessionname}{}
+\newcommand{\insertsession}{\sessionname}
+\newcommand{\session}[1]{\renewcommand{\sessionname}{#1}}
 \renewcommand\maketitle{%
   {%
     \setbeamertemplate{headline}{%
       \mbox{%
-        \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex]{background canvas}
-        \end{beamercolorbox}
+        \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.25ex]{header}%
+          \begin{minipage}{0.8\paperwidth}
+            \hspace{4mm}
+            \insertsession%
+          \end{minipage}%
+          \begin{minipage}{0.2\paperwidth}
+            \begin{center}
+              \insertdate%
+            \end{center}
+          \end{minipage}
+        \end{beamercolorbox}%
       }
     }
-    \setbeamertemplate{footline}{}
     \begin{frame}
       \titlepage%
     \end{frame}
@@ -128,16 +172,11 @@
 \newcommand{\beginappendix}{%
   {%
     \setbeamercolor{background canvas}{bg=black}
-    \setbeamertemplate{headline}{%
-      \mbox{%
-        \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.25ex]{background canvas}
-        \end{beamercolorbox}
-      }
-    }
-    \begin{frame}<handout:0>
+    \begin{frame}<handout:0>[plain]
     \end{frame}
   }
   \skipnumbering%
   \appendix%
 }
+\renewcommand{\indent}{\par\hspace{1em}}
 \makeatother

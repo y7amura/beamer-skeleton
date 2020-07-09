@@ -1,0 +1,77 @@
+% \begin{frame}{Outline}
+%   \tableofcontents
+% \end{frame}
+
+\section{Example}
+\begin{frame}{Title of this page}
+  This is the first line.\par
+    \pause%
+  This is the second line.
+\end{frame}
+
+\begin{frame}{Text}
+  normal\par
+  \alert{alert}\par
+  \emph{emph}\par
+  \textbf{textbf}\par
+  \textit{textit}\par
+  \structure{structure}
+\end{frame}
+
+\begin{frame}{Block}
+  \begin{block}{Normal block}
+    This is normal block.
+  \end{block}
+  \begin{exampleblock}{Example block}
+    This is example block.
+  \end{exampleblock}
+  \begin{alertblock}{Alert block}
+    This is normal block.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{itemize}
+    This is itemize.
+    \begin{itemize}
+      \item Item 1
+      \item Item 2
+      \item Item 3
+            \begin{itemize}
+              \item Item 3.1
+              \item Item 3.2
+            \end{itemize}
+    \end{itemize}
+
+    This is enumeration.
+    \begin{enumerate}
+      \item Item 1
+      \item Item 2
+      \item \begin{enumerate}
+        \item Item 1
+        \item Item 2
+      \end{enumerate}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Source code}
+
+\begin{lstlisting}[caption=First C example,language=C]
+int main()
+{
+    printf("Hello World!"); //=> Hello World!
+    return 0;
+}
+\end{lstlisting}
+
+This is the first C program.
+\end{frame}
+
+\beginappendix{} % appendix after this command
+
+\begin{frame}{Appendix A.}
+  This is appendix page.
+\end{frame}
+
+% \begin{frame}[allowframebreaks]
+%  \bibliography{}
+% \end{frame}
