@@ -3,7 +3,7 @@ BUILD_DIR=build
 
 SRC_MAIN=main.tex
 SRC_HANDOUT=handout.tex $(SRC_MAIN)
-SRC_COMMON=content.tex style.tex $(wildcard img/*)
+SRC_COMMON=content.tex style.tex macro.tex $(wildcard img/*)
 
 MAIN=$(BUILD_DIR)/$(SRC_MAIN:%.tex=%.pdf)
 HANDOUT=$(BUILD_DIR)/$(SRC_HANDOUT:%.tex=%.pdf)

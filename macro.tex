@@ -1,0 +1,27 @@
+% skip page numbering
+\newcommand{\skipnumbering}{\addtocounter{framenumber}{-1}}
+
+% appendix
+\newcommand{\beginappendix}{%
+  {%
+    \setbeamercolor{background canvas}{bg=black}
+    \begin{frame}<handout:0>[plain]
+    \end{frame}
+  }
+  \skipnumbering%
+  \appendix%
+}
+
+% vspace between blocks
+\newcommand{\pskip}{\vspace{8pt}\par}
+
+% indent block
+\newenvironment{indentblock}{
+  \begin{columns}
+  \begin{column}{0.05\textwidth}
+  \end{column}
+  \begin{column}{0.95\textwidth}
+}{
+  \end{column}
+  \end{columns}
+}

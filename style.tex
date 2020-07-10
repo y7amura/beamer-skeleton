@@ -142,7 +142,6 @@
 \usefonttheme[onlymath]{serif}
 
 %% Commands
-\newcommand{\skipnumbering}{\addtocounter{framenumber}{-1}}
 \newcommand{\sessionname}{}
 \newcommand{\insertsession}{\sessionname}
 \newcommand{\session}[1]{\renewcommand{\sessionname}{#1}}
@@ -169,14 +168,4 @@
     \skipnumbering%
   }%
 }
-\newcommand{\beginappendix}{%
-  {%
-    \setbeamercolor{background canvas}{bg=black}
-    \begin{frame}<handout:0>[plain]
-    \end{frame}
-  }
-  \skipnumbering%
-  \appendix%
-}
-\renewcommand{\indent}{\par\hspace{1em}}
 \makeatother
