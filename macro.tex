@@ -12,10 +12,13 @@
   \appendix%
 }
 
-% vspace between blocks
-\newcommand{\pskip}{\vspace{8pt}\par}
+% paragraph
+\newlength{\pskiplength}
+\setlength{\pskiplength}{4pt}
+\newcommand{\pskip}{\vspace{\pskiplength}\par}
+\newenvironment{paragraph}{}{\pskip}
 
-% indent block
+% indent block (maybe not required anymore)
 \newenvironment{indentblock}{
   \begin{columns}
   \begin{column}{0.05\textwidth}
